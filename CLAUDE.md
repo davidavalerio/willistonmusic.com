@@ -2,9 +2,9 @@
 
 The Williston Music Intensive website: Alma's music venture (the full-band workshop, the Mic Check singer's workshop, the Spotlight open mic). David runs the site; Alma's changes come through him. It is a like-for-like rebuild of the site she made in GoDaddy's website builder, so the look and the wording are hers: dark band with the WMI logo, Archivo Black headings, Montserrat text, white ground. A change of wording, a new sponsor, or a new year's page starts here; a redesign is Alma's call.
 
-## Where it stands
+## GoDaddy's old plan
 
-Published to GitHub Pages and confirmed there, but willistonmusic.com still points at GoDaddy's "Websites + Marketing Basic" plan in Alma's account, which renews automatically on or about October 15, 2026 ($203.88 in 2025) unless auto-renew is turned off. What remains, in order: in GoDaddy, remove the domain's connection to the website builder (it locks the A record) and point the DNS at GitHub Pages as under **Domain**; confirm the site at its address, then turn on Enforce HTTPS in the repo's Pages settings once GitHub has issued the certificate; cancel the plan. Once that is done, rewrite this section and add the site to the Static sites entry in `~/.claude/CLAUDE.md`.
+The site is served from this repo. The "Websites + Marketing Basic" plan that used to serve it, in Alma's GoDaddy account, no longer does; if it is still listed there it renews automatically on or about October 15, 2026 ($203.88 in 2025), and cancelling it does not touch this site, the domain, or the mail.
 
 ## Stack
 
@@ -30,3 +30,5 @@ GitHub Pages from `main`, repo `davidavalerio/willistonmusic.com`. `/deploy` shi
 ## Domain
 
 Registered at GoDaddy in Alma's account, paid through September 8, 2027; David manages the DNS there (web UI, no API access). Records for the site: four A records on `@` (`185.199.108.153` through `185.199.111.153`) and `www` as a CNAME to `davidavalerio.github.io`. `team@willistonmusic.com` runs on GoDaddy's mail records, so the MX and TXT records are left alone, as are the two forwards above.
+
+HTTPS is enforced in the Pages settings, and it has to stay working: the GoDaddy site told browsers to use only the secure address for two years, subdomains included, so a browser that visited it refuses the site outright whenever the certificate is missing. GitHub issues and renews the certificate itself. If it ever fails to, removing the custom domain in the Pages settings and adding it back makes GitHub recheck the DNS and issue one; that writes a "Delete CNAME" and a "Create CNAME" commit to `main`, so pull afterward.

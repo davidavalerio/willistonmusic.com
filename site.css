@@ -180,6 +180,30 @@ section { padding: 40px 0; }
   .video.flip > div { order: -1; }
 }
 
+/* Events: the upcoming list, written from Alma's calendar by events.py */
+.events { list-style: none; max-width: 725px; margin: 40px auto 0; padding: 0; }
+.events li { display: grid; grid-template-columns: 56px 1fr; gap: 24px; padding: 32px 0; border-top: 1px solid var(--line); }
+.events time {
+  font-family: "Archivo Black", arial, sans-serif; font-size: 32px; line-height: 1;
+  color: var(--ink); text-align: center;
+}
+.events time span {
+  display: block; margin: 4px -.143em 8px 0;
+  font-family: Montserrat, arial, sans-serif; font-size: 14px; font-weight: 700;
+  letter-spacing: .143em; text-transform: uppercase;
+}
+.events h3 { font-size: 22px; font-weight: 400; line-height: 1.25; color: var(--ink); }
+.events .when {
+  margin-top: 8px; font-size: 14px; font-weight: 700; line-height: 24px;
+  letter-spacing: .143em; text-transform: uppercase; color: var(--ink);
+}
+.events .about { margin-top: 16px; }
+.events-none { margin-top: 40px; }
+@media (min-width: 768px) {
+  .events li { grid-template-columns: 72px 1fr; gap: 32px; }
+  .events time { font-size: 39px; }
+}
+
 /* Sponsor: the two downloads */
 .kit { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px 48px; margin-top: 33px; }
 .kit div {

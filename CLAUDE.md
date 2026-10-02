@@ -1,0 +1,32 @@
+# willistonmusic.com
+
+The Williston Music Intensive website: Alma's music venture (the full-band workshop, the Mic Check singer's workshop, the Spotlight open mic). David runs the site; Alma's changes come through him. It is a like-for-like rebuild of the site she made in GoDaddy's website builder, so the look and the wording are hers: dark band with the WMI logo, Archivo Black headings, Montserrat text, white ground. A change of wording, a new sponsor, or a new year's page starts here; a redesign is Alma's call.
+
+## Where it stands
+
+Built and checked locally against the GoDaddy site, not yet published. willistonmusic.com is still served by GoDaddy's "Websites + Marketing Basic" plan in Alma's account, which renews automatically on or about October 15, 2026 ($203.88 in 2025) unless auto-renew is turned off. The cutover, in order: publish this repo to GitHub Pages; in GoDaddy, remove the domain's connection to the website builder (it locks the A record), point the DNS at GitHub Pages as under **Domain**; confirm the site and its certificate; cancel the plan. Once that is done, rewrite this section and add the site to the Static sites entry in `~/.claude/CLAUDE.md`.
+
+## Stack
+
+Static HTML, one shared stylesheet (`site.css`), no build step and no script. The header, menu, and footer are repeated in each page, so a change to them is made in all six. Fonts come from Google Fonts. One layout: links across the top from 1024px, a menu button with a full-screen drawer below (a checkbox, no JavaScript); columns stack below 768px. The sponsor wall is written twice on each page that has it, three columns (`.sponsors.d`) and two (`.sponsors.p`), to keep the staggered arrangement of the original at both widths.
+
+## Files
+
+- `index.html`, `about.html`, `events.html`, `sponsor.html`, `2026.html`, `404.html`. GitHub Pages serves each at its name without `.html`, so the addresses are `/about`, `/events`, `/sponsor`, `/2026`, as they were on GoDaddy. `/2026` is the participants' songs-and-links page and is in no menu.
+- `img/`: the photos at web size and the sponsor logos. `originals/` holds the full-size photos as downloaded from GoDaddy.
+- `downloads/`: the two PDFs on the Sponsor page (the sponsorship booklet, the 2024 donor report). A new year's booklet replaces the file under the same name.
+- `favicon.png`, `apple-touch-icon.png`: the W mark on black, from `1-Practice/3-WMI/Branding/WMI-r12-dark.png` in the Drive.
+- `preview.py`: `python3 preview.py` serves the site at `http://127.0.0.1:8765/` with the same extensionless addresses.
+- `CNAME`: `willistonmusic.com`.
+
+## Outside the repo
+
+Registration and the sponsor form are Alma's Jotform forms. `register.willistonmusic.com` and `sponsor.willistonmusic.com` are forwards set in GoDaddy's DNS to those forms; the Sponsor page's "donor form" link uses the second. The song charts on `/2026` are files in Alma's Google Drive.
+
+## Deployment
+
+GitHub Pages from `main`, repo `davidavalerio/willistonmusic.com`. `/deploy` ships changes.
+
+## Domain
+
+Registered at GoDaddy in Alma's account, paid through September 8, 2027; David manages the DNS there (web UI, no API access). Records for the site: four A records on `@` (`185.199.108.153` through `185.199.111.153`) and `www` as a CNAME to `davidavalerio.github.io`. `team@willistonmusic.com` runs on GoDaddy's mail records, so the MX and TXT records are left alone, as are the two forwards above.

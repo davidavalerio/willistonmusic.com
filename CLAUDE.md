@@ -4,7 +4,7 @@ The Williston Music Intensive website: Alma's music venture (the full-band works
 
 ## Where it stands
 
-Built and checked locally against the GoDaddy site, not yet published. willistonmusic.com is still served by GoDaddy's "Websites + Marketing Basic" plan in Alma's account, which renews automatically on or about October 15, 2026 ($203.88 in 2025) unless auto-renew is turned off. The cutover, in order: publish this repo to GitHub Pages; in GoDaddy, remove the domain's connection to the website builder (it locks the A record), point the DNS at GitHub Pages as under **Domain**; confirm the site and its certificate; cancel the plan. Once that is done, rewrite this section and add the site to the Static sites entry in `~/.claude/CLAUDE.md`.
+Published to GitHub Pages and confirmed there, but willistonmusic.com still points at GoDaddy's "Websites + Marketing Basic" plan in Alma's account, which renews automatically on or about October 15, 2026 ($203.88 in 2025) unless auto-renew is turned off. What remains, in order: in GoDaddy, remove the domain's connection to the website builder (it locks the A record) and point the DNS at GitHub Pages as under **Domain**; confirm the site at its address, then turn on Enforce HTTPS in the repo's Pages settings once GitHub has issued the certificate; cancel the plan. Once that is done, rewrite this section and add the site to the Static sites entry in `~/.claude/CLAUDE.md`.
 
 ## Stack
 

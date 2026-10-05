@@ -82,9 +82,8 @@
   </div>
 </section>
 <script>
-// The Public tab of Alma's "WMI – Marketplace Listings" sheet, published to the web as CSV.
-// It holds only approved, unexpired listings, columns A–L; approving and expiring happen in the sheet.
-const CSV = "";
+// The approved, unexpired listings, columns A–L, written from Alma's sheet by marketplace.py.
+const CSV = "/marketplace.csv";
 
 // "I am a…" in the form's order, for the filter buttons.
 const TYPES = ["Solo musician or singer", "Band or group", "Venue or business", "Event organizer or organization", "Church or worship team", "Educator or school", "Student (or parent/guardian)", "Sound, lighting, or tech professional", "DJ"];
@@ -189,7 +188,7 @@ function show(rows) {
   filter.hidden = false;
 }
 
-(CSV ? fetch(CSV) : Promise.reject())
+fetch(CSV, { cache: "no-cache" })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
   .then(text => {
     const rows = parseCSV(text).slice(1)

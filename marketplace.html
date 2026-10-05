@@ -119,8 +119,8 @@ function parseDate(s) {
 }
 const longDate = s => { const p = parseDate(s); return p ? `${MONTHS[p[1] - 1]} ${p[2]}, ${p[0]}` : s; };
 const sortKey = s => { const p = parseDate(s); return p ? ((p[0] * 100 + p[1]) * 100 + p[2]) * 86400 + p[3] : -1; };
-// Lowercase the first letter so the sentence flows, but leave "DJ" as it is.
-const flow = s => /^[A-Z][A-Z]/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1);
+// All lowercase so the sentence flows (Alma's rule).
+const flow = s => s.toLowerCase();
 
 function el(tag, cls, ...kids) {
   const e = document.createElement(tag);
@@ -135,7 +135,7 @@ function card(r) {
   const c = el("article", "listing");
   if (iam || seeking) {
     const who = el("p", "who");
-    if (iam) who.append(/^[aeiou]/i.test(iam) ? "I am an " : "I am a ", el("strong", null, flow(iam)));
+    if (iam) who.append("I am a ", el("strong", null, flow(iam)));
     if (seeking) who.append(iam ? " seeking " : "Seeking ", el("strong", null, flow(seeking)));
     c.append(who);
   }

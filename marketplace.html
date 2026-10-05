@@ -52,25 +52,30 @@
     <h2 class="h">Marketplace</h2>
     <div class="market-intro">
       <p><strong>Welcome to the Marketplace.</strong> Whether you’re a singer-songwriter looking for gigs, a band on the hunt for a bassist, or a business seeking entertainers to play at your next event, this is the place to connect.</p>
-      <p>Post a listing to find the people and opportunities you need, &amp; we’ll post it once approved. Listings are free to submit &amp; open to the Williston area (within 75 miles).</p>
-      <p><strong>Open-ended listings</strong> stay up for 6 months unless you request removal (email <a href="mailto:team@willistonmusic.com">team@willistonmusic.com</a>). <strong>Dated listings</strong> come down after the event or deadline.</p>
-      <p><strong>Note: WMI shares these listings as a free community service and does not screen, endorse, or guarantee any listing or the people who post them. Please use your own judgment when connecting with others.</strong></p>
     </div>
-    <div class="market-form">
-      <iframe
-        id="JotFormIFrame-262766924022156"
-        title="Williston Music Intensive Marketplace"
-        onload="window.parent.scrollTo(0,0)"
-        allowtransparency="true"
-        allow="geolocation; microphone; camera; fullscreen; payment"
-        src="https://form.jotform.com/262766924022156"
-        frameborder="0"
-        style="min-width:100%;max-width:100%;height:539px;border:none;"
-        scrolling="no"
-      >
-      </iframe>
-      <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
-      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-262766924022156']", "https://form.jotform.com/")</script>
+    <div class="market-toggle">
+      <button class="btn btn-dark" type="button" aria-expanded="false" aria-controls="post">Post a listing</button>
+    </div>
+    <div class="market-post" id="post" hidden>
+      <div class="market-intro">
+        <p><strong>Post a listing</strong> to find the people &amp; opportunities you need, &amp; we’ll post it once approved. Listings are free to submit &amp; open to the Williston area (+75 miles). Open-ended listings stay up for 6 months unless you request removal (email <a href="mailto:team@willistonmusic.com">team@willistonmusic.com</a>). Dated listings come down after the event or deadline.</p>
+        <p><em>Note: WMI shares these listings as a free community service &amp; does not screen, endorse, or guarantee any listing or the people who post them. Please use your own judgment when connecting with others.</em></p>
+      </div>
+      <div class="market-form">
+        <!-- The form's address is set on first open, so Jotform sizes it at its real width. -->
+        <iframe
+          id="JotFormIFrame-262766924022156"
+          title="Williston Music Intensive Marketplace"
+          allowtransparency="true"
+          allow="geolocation; microphone; camera; fullscreen; payment"
+          data-src="https://form.jotform.com/262766924022156"
+          frameborder="0"
+          style="min-width:100%;max-width:100%;height:539px;border:none;"
+          scrolling="no"
+        >
+        </iframe>
+        <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+      </div>
     </div>
   </div>
 </section>
@@ -85,8 +90,21 @@
 // The approved, unexpired listings, columns A–L, written from Alma's sheet by marketplace.py.
 const CSV = "/marketplace.csv";
 
-// "I am a…" in the form's order, for the filter buttons.
-const TYPES = ["Solo musician or singer", "Band or group", "Venue or business", "Event organizer or organization", "Church or worship team", "Educator or school", "Student (or parent/guardian)", "Sound, lighting, or tech professional", "DJ"];
+// "Post a listing" opens and closes her text and the form; the form loads on first open.
+const toggle = document.querySelector(".market-toggle .btn");
+toggle.onclick = () => {
+  const post = document.getElementById("post"), open = post.hidden;
+  post.hidden = !open;
+  toggle.setAttribute("aria-expanded", open);
+  const form = post.querySelector("iframe");
+  if (open && !form.src) {
+    form.src = form.dataset.src;
+    window.jotformEmbedHandler("iframe[id='JotFormIFrame-262766924022156']", "https://form.jotform.com/");
+  }
+};
+
+// "Seeking…" in the form's order, for the filter buttons.
+const TYPES = ["Places to perform", "Band members or collaborators", "Musicians or performers for my venue", "Lessons or instruction", "Students", "Sound, lighting, or tech help", "Rehearsal or recording space", "Instruments or gear", "Photographer or videographer", "DJ or emcee", "Instrument repair or rental", "Promotion or publicity help", "Other"];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function parseCSV(text) {
@@ -168,10 +186,10 @@ function show(rows) {
   const filter = document.querySelector(".market-filter");
   list.replaceChildren();
   if (!rows.length) { list.append(el("p", "market-none", "No active listings right now. Be the first to post!")); return; }
-  const cards = rows.map(r => { const c = card(r); c.dataset.type = r[1]; return c; });
+  const cards = rows.map(r => { const c = card(r); c.dataset.type = r[2]; return c; });
   const grid = el("div", "listings", ...cards);
   list.append(grid);
-  const present = [...new Set(rows.map(r => r[1]).filter(Boolean))];
+  const present = [...new Set(rows.map(r => r[2]).filter(Boolean))];
   const types = TYPES.filter(t => present.includes(t)).concat(present.filter(t => !TYPES.includes(t)));
   if (types.length < 2) return;
   const buttons = ["All", ...types].map(t => {

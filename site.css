@@ -245,7 +245,11 @@ footer p { font-size: 14px; color: var(--muted); margin-top: 24px; }
 /* Marketplace: Alma's form, then the approved listings read from her sheet */
 .market-intro { max-width: 725px; margin: 0 auto; }
 .market-intro p + p { margin-top: 16px; }
-.market-form { max-width: 725px; margin: 40px auto 0; }
+.market-toggle { margin-top: 32px; text-align: center; }
+.market-toggle .btn { border: 0; cursor: pointer; font-family: inherit; }
+.market-post { margin-top: 32px; }
+.market-post[hidden] { display: none; }
+.market-form { max-width: 725px; margin: 32px auto 0; }
 .market-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
 .market-filter[hidden] { display: none; }
 .market-filter .btn { min-height: 36px; letter-spacing: .08em; background: #fff; color: var(--ink); border: 1px solid var(--line); cursor: pointer; font-family: inherit; }

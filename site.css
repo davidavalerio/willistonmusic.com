@@ -241,3 +241,28 @@ footer .wrap > div { border-top: 1px solid var(--line); padding-top: 24px; displ
 footer a { width: 40px; height: 40px; }
 footer p { flex-basis: 100%; }
 footer p { font-size: 14px; color: var(--muted); margin-top: 24px; }
+
+/* Marketplace: Alma's form, then the approved listings read from her sheet */
+.market-intro { max-width: 725px; margin: 0 auto; }
+.market-intro p + p { margin-top: 16px; }
+.market-form { max-width: 725px; margin: 40px auto 0; }
+.market-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.market-filter[hidden] { display: none; }
+.market-filter .btn { min-height: 36px; letter-spacing: .08em; background: #fff; color: var(--ink); border: 1px solid var(--line); cursor: pointer; font-family: inherit; }
+.market-filter .btn:hover { border-color: var(--ink); }
+.market-filter .btn[aria-pressed="true"] { background: var(--dark); color: #f1f1f1; border-color: var(--dark); }
+.market-none { text-align: center; }
+.listings { display: grid; gap: 24px; }
+.listing { min-width: 0; padding: 24px; border: 1px solid var(--line); overflow-wrap: anywhere; }
+.listing[hidden] { display: none; }
+.listing .who { color: var(--ink); margin-bottom: 8px; }
+.listing .meta { font-size: 14px; color: var(--muted); }
+.listing h3 { margin-top: 16px; font-size: 22px; font-weight: 400; line-height: 1.25; color: var(--ink); }
+.listing h3 em { font-size: 16px; color: var(--text); }
+.listing .details { margin-top: 8px; white-space: pre-line; }
+.listing .line { margin-top: 8px; }
+.listing .details + .line { margin-top: 16px; }
+@media (min-width: 768px) {
+  .listings { grid-template-columns: 1fr 1fr; }
+  .listing { padding: 32px; }
+}

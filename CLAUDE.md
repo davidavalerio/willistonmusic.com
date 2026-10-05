@@ -8,11 +8,12 @@ The site is served from this repo. The "Websites + Marketing Basic" plan that us
 
 ## Stack
 
-Static HTML, one shared stylesheet (`site.css`), no build step and no script in the pages. The header, menu, and footer are repeated in each page, so a change to them is made in all six. Fonts come from Google Fonts. One layout: links across the top from 1024px, a menu button with a full-screen drawer below (a checkbox, no JavaScript); columns stack below 768px. The sponsor wall is written twice on each page that has it, three columns (`.sponsors.d`) and two (`.sponsors.p`), to keep the staggered arrangement of the original at both widths.
+Static HTML, one shared stylesheet (`site.css`), no build step, and no script in the pages except the Marketplace's. The header, menu, and footer are repeated in each page, so a change to them is made in all seven. Fonts come from Google Fonts. One layout: links across the top from 1024px, a menu button with a full-screen drawer below (a checkbox, no JavaScript); columns stack below 768px. The sponsor wall is written twice on each page that has it, three columns (`.sponsors.d`) and two (`.sponsors.p`), to keep the staggered arrangement of the original at both widths.
 
 ## Files
 
-- `index.html`, `about.html`, `events.html`, `sponsor.html`, `2026.html`, `404.html`. GitHub Pages serves each at its name without `.html`, so the addresses are `/about`, `/events`, `/sponsor`, `/2026`, as they were on GoDaddy. `/2026` is the participants' songs-and-links page and is in no menu.
+- `index.html`, `about.html`, `events.html`, `marketplace.html`, `sponsor.html`, `2026.html`, `404.html`. GitHub Pages serves each at its name without `.html`, so the addresses are `/about`, `/events`, `/marketplace`, `/sponsor`, `/2026`, as they were on GoDaddy. `/2026` is the participants' songs-and-links page and is in no menu.
+- `marketplace.html`: Alma's community classifieds. Her intro, her Marketplace form embedded, then the listings, which the page's one script reads from her sheet each time it opens (the address is the `CSV` constant at the top of the script) and lays out as cards, newest first, with a filter by "I am a…". It shows whatever that tab holds; which listings appear and when they expire is decided in the sheet, so approving one needs nothing here.
 - `img/`: the photos at web size and the sponsor logos. `originals/` holds the full-size photos as downloaded from GoDaddy.
 - `downloads/`: the two PDFs on the Sponsor page (the sponsorship booklet, the 2024 donor report). A new year's booklet replaces the file under the same name.
 - `favicon.png`, `apple-touch-icon.png`: the W mark on black, from `1-Practice/3-WMI/Branding/WMI-r12-dark.png` in the Drive.
@@ -22,7 +23,7 @@ Static HTML, one shared stylesheet (`site.css`), no build step and no script in 
 
 ## Outside the repo
 
-Registration and the sponsor form are Alma's Jotform forms. `register.willistonmusic.com` and `sponsor.willistonmusic.com` are forwards set in GoDaddy's DNS to those forms; the Sponsor page's "donor form" link uses the second. The song charts on `/2026` are files in Alma's Google Drive. The events are her public Google Calendar "Williston Music Intensive" (the one GoDaddy's calendar widget read; its address is in `events.py`): she adds or changes an event there, not on the site.
+Registration, the sponsor form, and the Marketplace form are Alma's Jotform forms. Marketplace submissions land in the Submissions tab of her Google Sheet "WMI – Marketplace Listings", where she sets Status and the sheet works out whether each has expired; its Public tab pulls only the approved, unexpired listings, columns A–L, and is the one tab published to the web as CSV, with the sheet itself not shared by link, so nothing she hasn't approved can be read from the page. `register.willistonmusic.com` and `sponsor.willistonmusic.com` are forwards set in GoDaddy's DNS to those forms; the Sponsor page's "donor form" link uses the second. The song charts on `/2026` are files in Alma's Google Drive. The events are her public Google Calendar "Williston Music Intensive" (the one GoDaddy's calendar widget read; its address is in `events.py`): she adds or changes an event there, not on the site.
 
 ## Deployment
 
